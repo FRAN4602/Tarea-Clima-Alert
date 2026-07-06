@@ -1,27 +1,26 @@
 package ar.edu.utn.ba.ddsi.clima_alert.service;
 
+import ar.edu.utn.ba.ddsi.clima_alert.config.EmailProperties;
 import ar.edu.utn.ba.ddsi.clima_alert.domain.RegistroClimatico;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+
 
 @Service
 public class EmailService {
-    private static final List<String> DESTINATARIOS = List.of(
-            "admin@clima.com", "emergencias@clima.com", "meteorologia@clima.com"
-    );
-
     private final JavaMailSender mailSender;
+    private final EmailProperties emailProperties;
 
-    public EmailService(JavaMailSender mailSender) {
+    public EmailService(JavaMailSender mailSender, EmailProperties emailProperties) {
         this.mailSender = mailSender;
+        this.emailProperties = emailProperties;
     }
 
     public void enviarAlerta(RegistroClimatico r) {
         SimpleMailMessage mensaje = new SimpleMailMessage();
-        mensaje.setTo(DESTINATARIOS.toArray(new String[0]));
+        mensaje.setTo(emailProperties.getDestinatarios().toArray(new String[0]));
         mensaje.setSubject("Alerta climática detectada");
         mensaje.setText("""
             Se detectó una condición climática crítica:

@@ -20,9 +20,13 @@ public class WeatherFetchService {
         this.repository = repository;
     }
 
-    @Scheduled(fixedRate = 300000) // 5 minutos
+    @Scheduled(fixedRate = 300000)
     public void obtenerYAlmacenarClima() {
-        WeatherApiResponseDTO respuesta = client.obtenerClimaActual();
-        repository.guardar(mapper.aDominio(respuesta));
+        try {
+            WeatherApiResponseDTO respuesta = client.obtenerClimaActual();
+            repository.guardar(mapper.aDominio(respuesta));
+        } catch (Exception e) {
+            System.err.println("No se pudo obtener el clima: " + e.getMessage());
+        }
     }
 }
