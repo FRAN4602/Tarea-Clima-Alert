@@ -1,3 +1,15 @@
 spring:
   application:
     name: clima-alert
+
+weatherapi:
+  base-url: https://api.weatherapi.com/v1
+  key: ${WEATHERAPI_KEY}
+  ubicacion: Buenos Aires
+
+climalert:
+  email:
+    destinatarios:
+      - admin@clima.com
+      - emergencias@clima.com
+      - meteorologia@clima.com
