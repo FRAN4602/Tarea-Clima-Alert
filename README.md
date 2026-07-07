@@ -22,7 +22,7 @@ Para evitar mails duplicados, solo se dispara una alerta por cada nuevo registro
 
 | Tecnología | Uso |
 |---|---|
-| **Java 21** (o superior) | Lenguaje y runtime |
+| **Java 21** (o superior) 
 | **Spring Boot** | Aplicación, inyección de dependencias, scheduling (`@Scheduled`) y cliente HTTP |
 | **Lombok** | Reducción de boilerplate en DTOs y entidades |
 
